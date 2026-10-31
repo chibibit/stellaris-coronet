@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1024 1024">
+  <!--
+    Collection and profile image, rendered at 1024x1024 by scripts/brand.sh: the Workshop collection
+    for the family, the GitHub organisation or repository avatar, a Discord server icon.
+    Placeholders: {{MARK}} only.
+  -->
+  <defs>
+    <radialGradient id="crn-c-bg" cx="50%" cy="36%" r="80%">
+      <stop offset="0" stop-color="#1F2B60"/>
+      <stop offset="0.5" stop-color="#141A36"/>
+      <stop offset="1" stop-color="#090C18"/>
+    </radialGradient>
+    <radialGradient id="crn-c-nebula-a" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#2E3F8A" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#2E3F8A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="crn-c-nebula-b" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#1A2456" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#1A2456" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="crn-c-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#F0C75E" stop-opacity="0.16"/>
+      <stop offset="0.5" stop-color="#D6AC40" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#D6AC40" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="crn-c-vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0.55" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.45"/>
+    </radialGradient>
+    <filter id="crn-c-text" x="-20%" y="-60%" width="140%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+      <feComponentTransfer in="blur" result="glow"><feFuncA type="linear" slope="0.55"/></feComponentTransfer>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="crn-c-star" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#crn-c-bg)"/>
+  <ellipse cx="280" cy="220" rx="520" ry="320" fill="url(#crn-c-nebula-a)"/>
+  <ellipse cx="840" cy="860" rx="520" ry="340" fill="url(#crn-c-nebula-b)"/>
+  <g fill="#F4F1EA" filter="url(#crn-c-star)">
+    <circle cx="92" cy="176" r="2.8" opacity="0.75"/>
+    <circle cx="184" cy="80" r="2" opacity="0.55"/>
+    <circle cx="840" cy="192" r="2.6" opacity="0.7"/>
+    <circle cx="940" cy="300" r="1.8" opacity="0.5"/>
+    <circle cx="760" cy="88" r="2" opacity="0.45"/>
+    <circle cx="120" cy="600" r="2.2" opacity="0.5"/>
+    <circle cx="60" cy="840" r="3" opacity="0.65"/>
+    <circle cx="960" cy="660" r="2.2" opacity="0.5"/>
+    <circle cx="912" cy="940" r="2.6" opacity="0.6"/>
+    <circle cx="240" cy="940" r="2" opacity="0.4"/>
+    <circle cx="512" cy="48" r="1.8" opacity="0.4"/>
+    <circle cx="792" cy="500" r="3.4" opacity="0.75"/>
+    <circle cx="172" cy="392" r="3" opacity="0.7"/>
+  </g>
+  <circle cx="512" cy="340" r="460" fill="url(#crn-c-halo)"/>
+  <rect width="1024" height="1024" fill="url(#crn-c-vignette)"/>
+  <rect x="28" y="28" width="968" height="968" fill="none" stroke="#D6AC40" stroke-opacity="0.4" stroke-width="3"/>
+  <rect x="38" y="38" width="948" height="948" fill="none" stroke="#F3E3B0" stroke-opacity="0.08" stroke-width="2"/>
+  <!-- mark, 500 px -->
+  <g transform="translate(262 90) scale(2.5)">
+    {{MARK}}
+  </g>
+  <g filter="url(#crn-c-text)">
+    <text x="512" y="760" text-anchor="middle" font-family="Cinzel, 'Palatino Linotype', Georgia, serif" font-size="118" letter-spacing="14" fill="#D6AC40">CORONET</text>
+  </g>
+  <line x1="392" y1="796" x2="632" y2="796" stroke="#D6AC40" stroke-opacity="0.55" stroke-width="2"/>
+  <text x="512" y="856" text-anchor="middle" font-family="Bahnschrift, 'Segoe UI', sans-serif" font-size="40" letter-spacing="14" fill="#5CC8DC">STELLARIS MODS</text>
+</svg>

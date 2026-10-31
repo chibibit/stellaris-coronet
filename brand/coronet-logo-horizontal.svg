@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 200">
+  <!--
+    Horizontal lockup: mark at the left, wordmark to the right, transparent background.
+    For dark backgrounds only (README.md, Rules: the mark never sits on a light background without its disc).
+    The mark is inlined here by scripts/brand.sh from coronet-mark.svg; edit the mark there, not here.
+  -->
+  <defs>
+    <filter id="crn-l-text" x="-20%" y="-60%" width="140%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+      <feComponentTransfer in="blur" result="glow"><feFuncA type="linear" slope="0.5"/></feComponentTransfer>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g transform="translate(10 10) scale(0.9)">
+    {{MARK}}
+  </g>
+  <g filter="url(#crn-l-text)">
+    <text x="222" y="128" font-family="Cinzel, 'Palatino Linotype', Georgia, serif" font-size="96" letter-spacing="10" fill="#D6AC40">CORONET</text>
+  </g>
+  <text x="226" y="166" font-family="Bahnschrift, 'Segoe UI', sans-serif" font-size="22" letter-spacing="9" fill="#5CC8DC">STELLARIS MODS</text>
+</svg>

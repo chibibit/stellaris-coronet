@@ -1,0 +1,6 @@
+# On_action lists merge across mods, so this adds to vanilla's on_game_start without replacing it.
+on_game_start = {
+	events = {
+		crn_core.1	# Announce the mod: set crn_core_active, write the load line to game.log
+	}
+}

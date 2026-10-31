@@ -1,0 +1,4 @@
+﻿l_simp_chinese:
+# Generated from the english file by scripts/loc-sync.sh. Edit the english file, then run it again.
+ crn_core_name:0 "Coronet: Core"
+ crn_core_desc:0 "The shared framework of the Coronet mods. Sets the crn_core_active flag on game start; the other Coronet mods depend on it."

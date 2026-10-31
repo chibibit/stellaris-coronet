@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+  <!--
+    Coronet mark, master file. A star seen in eclipse: the ring is the star's limb, the five points on the
+    upper arc are its corona shaped into a small crown, the faint rays below are the rest of the corona,
+    and the emblem at the heart is the mod's own (the family's heart star by default).
+    The group between the mark:start / mark:end comments is what scripts/brand.sh inlines into templates,
+    so everything it needs (defs, filters) lives inside that group. Ids are prefixed crn- to avoid clashes.
+    Designed on a 200x200 grid centred at (100,100). Clear space around the mark: 20 units.
+    Glow is restrained: a soft corona, a faint bloom on the gold, a small halo on the jewels and the emblem.
+  -->
+  <!-- mark:start -->
+  <g id="crn-mark">
+    <defs>
+      <radialGradient id="crn-corona" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#F0C75E" stop-opacity="0.34"/>
+        <stop offset="0.45" stop-color="#D6AC40" stop-opacity="0.18"/>
+        <stop offset="0.72" stop-color="#D6AC40" stop-opacity="0.06"/>
+        <stop offset="1" stop-color="#D6AC40" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="crn-gold" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#EFCB70"/>
+        <stop offset="0.5" stop-color="#D6AC40"/>
+        <stop offset="1" stop-color="#B58C2C"/>
+      </linearGradient>
+      <radialGradient id="crn-disc" cx="50%" cy="40%" r="62%">
+        <stop offset="0" stop-color="#151B36"/>
+        <stop offset="1" stop-color="#090C18"/>
+      </radialGradient>
+      <!-- bloom: a blurred copy of the shape underneath itself, at reduced strength -->
+      <filter id="crn-bloom-gold" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+        <feComponentTransfer in="blur" result="glow"><feFuncA type="linear" slope="0.75"/></feComponentTransfer>
+        <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="crn-bloom-light" x="-80%" y="-80%" width="260%" height="260%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="blur"/>
+        <feComponentTransfer in="blur" result="glow"><feFuncA type="linear" slope="1.1"/></feComponentTransfer>
+        <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <filter id="crn-haze" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="7"/>
+      </filter>
+      <!-- crown points with gently concave sides -->
+      <path id="crn-point" d="M100 14 Q95.5 31 93 42 L107 42 Q104.5 31 100 14 Z"/>
+      <path id="crn-point-tall" d="M100 6 Q94.8 28 92 42 L108 42 Q105.2 28 100 6 Z"/>
+      <line id="crn-ray" x1="100" y1="36" x2="100" y2="23"/>
+    </defs>
+
+    <!-- the corona proper: a wide soft glow -->
+    <circle cx="100" cy="100" r="100" fill="url(#crn-corona)"/>
+    <!-- a hazy copy of ring and crown, faint, so the gold seems to warm the space around it -->
+    <g fill="#F0C75E" stroke="#F0C75E" opacity="0.26" filter="url(#crn-haze)">
+      <circle cx="100" cy="100" r="56" fill="none" stroke-width="9"/>
+      <use xlink:href="#crn-point-tall"/>
+      <use xlink:href="#crn-point" transform="rotate(-34 100 100)"/>
+      <use xlink:href="#crn-point" transform="rotate(34 100 100)"/>
+      <use xlink:href="#crn-point" transform="rotate(-68 100 100)"/>
+      <use xlink:href="#crn-point" transform="rotate(68 100 100)"/>
+    </g>
+
+    <!-- the rest of the corona: rays around the lower half -->
+    <g stroke="#F3E3B0" stroke-width="1.6" stroke-linecap="round" opacity="0.55">
+      <use xlink:href="#crn-ray" transform="rotate(104 100 100)"/>
+      <use xlink:href="#crn-ray" transform="rotate(123 100 100)"/>
+      <use xlink:href="#crn-ray" transform="rotate(142 100 100)"/>
+      <use xlink:href="#crn-ray" transform="rotate(161 100 100)"/>
+      <use xlink:href="#crn-ray" transform="rotate(180 100 100)"/>
+      <use xlink:href="#crn-ray" transform="rotate(199 100 100)"/>
+      <use xlink:href="#crn-ray" transform="rotate(218 100 100)"/>
+      <use xlink:href="#crn-ray" transform="rotate(237 100 100)"/>
+      <use xlink:href="#crn-ray" transform="rotate(256 100 100)"/>
+    </g>
+
+    <!-- the crown and the limb -->
+    <g filter="url(#crn-bloom-gold)">
+      <g fill="url(#crn-gold)">
+        <use xlink:href="#crn-point-tall"/>
+        <use xlink:href="#crn-point" transform="rotate(-34 100 100)"/>
+        <use xlink:href="#crn-point" transform="rotate(34 100 100)"/>
+        <use xlink:href="#crn-point" transform="rotate(-68 100 100)"/>
+        <use xlink:href="#crn-point" transform="rotate(68 100 100)"/>
+      </g>
+      <circle cx="100" cy="100" r="56" fill="none" stroke="url(#crn-gold)" stroke-width="7"/>
+    </g>
+    <!-- a hairline highlight on the outer edge of the limb -->
+    <circle cx="100" cy="100" r="59" fill="none" stroke="#F3E3B0" stroke-width="0.6" opacity="0.4"/>
+
+    <!-- jewels at the tips -->
+    <g fill="#F3E3B0" filter="url(#crn-bloom-light)">
+      <circle cx="100" cy="6" r="3.4"/>
+      <circle cx="51.9" cy="28.7" r="2.8"/>
+      <circle cx="148.1" cy="28.7" r="2.8"/>
+      <circle cx="20.3" cy="67.8" r="2.8"/>
+      <circle cx="179.7" cy="67.8" r="2.8"/>
+    </g>
+
+    <!-- the eclipse disc, with a faint inner ring for depth -->
+    <circle cx="100" cy="100" r="52.5" fill="url(#crn-disc)"/>
+    <circle cx="100" cy="100" r="52.5" fill="none" stroke="#F0C75E" stroke-width="0.8" opacity="0.3"/>
+    <circle cx="100" cy="100" r="46" fill="none" stroke="#F3E3B0" stroke-width="0.5" opacity="0.14"/>
+
+    <!-- the emblem: the family's heart star by default; scripts/brand.sh swaps in each mod's own emblem
+         from brand/emblems/ (an emblem fits inside radius 38 around (100,100)) -->
+    <g filter="url(#crn-bloom-light)">
+    <!-- emblem:start -->
+    <path d="M100 85 L103.2 96.8 L115 100 L103.2 103.2 L100 115 L96.8 103.2 L85 100 L96.8 96.8 Z" fill="#F3E3B0"/>
+    <!-- emblem:end -->
+    </g>
+  </g>
+  <!-- mark:end -->
+</svg>

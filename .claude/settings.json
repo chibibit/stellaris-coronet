@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(scripts/check.sh:*)",
+      "Bash(scripts/install.sh --dry-run:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ],
+    "deny": [
+      "Read(./.claude/settings.local.json)",
+      "Bash(git push --force:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": false
+}

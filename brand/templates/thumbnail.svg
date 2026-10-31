@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512">
+  <!--
+    Mod thumbnail template, rendered at 512x512 to <mod>/thumbnail.png by scripts/brand.sh.
+    Placeholders: {{MARK}} (inlined mark), {{SUBTITLE}} (the mod's purpose, upper case), {{VERSION}} (game version).
+    The mod name must stay legible at 200 px wide, which is why the wordmark is this large.
+    Haze and halo are radial gradients, not blurred shapes, so they never show an edge.
+  -->
+  <defs>
+    <radialGradient id="crn-t-bg" cx="50%" cy="36%" r="80%">
+      <stop offset="0" stop-color="#1F2B60"/>
+      <stop offset="0.5" stop-color="#141A36"/>
+      <stop offset="1" stop-color="#090C18"/>
+    </radialGradient>
+    <radialGradient id="crn-t-nebula-a" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#2E3F8A" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#2E3F8A" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="crn-t-nebula-b" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#1A2456" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#1A2456" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="crn-t-halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#F0C75E" stop-opacity="0.16"/>
+      <stop offset="0.5" stop-color="#D6AC40" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#D6AC40" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="crn-t-vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0.55" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.45"/>
+    </radialGradient>
+    <filter id="crn-t-text" x="-20%" y="-60%" width="140%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+      <feComponentTransfer in="blur" result="glow"><feFuncA type="linear" slope="0.55"/></feComponentTransfer>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="crn-t-star" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="512" height="512" fill="url(#crn-t-bg)"/>
+  <!-- nebula haze -->
+  <ellipse cx="140" cy="110" rx="260" ry="160" fill="url(#crn-t-nebula-a)"/>
+  <ellipse cx="420" cy="430" rx="260" ry="170" fill="url(#crn-t-nebula-b)"/>
+  <!-- a fixed, sparse starfield so every thumbnail is identical apart from its text -->
+  <g fill="#F4F1EA" filter="url(#crn-t-star)">
+    <circle cx="46" cy="88" r="1.4" opacity="0.75"/>
+    <circle cx="92" cy="40" r="1" opacity="0.55"/>
+    <circle cx="150" cy="128" r="0.9" opacity="0.45"/>
+    <circle cx="420" cy="96" r="1.3" opacity="0.7"/>
+    <circle cx="470" cy="150" r="0.9" opacity="0.5"/>
+    <circle cx="380" cy="44" r="1" opacity="0.45"/>
+    <circle cx="60" cy="300" r="1.1" opacity="0.5"/>
+    <circle cx="30" cy="420" r="1.5" opacity="0.65"/>
+    <circle cx="480" cy="330" r="1.1" opacity="0.5"/>
+    <circle cx="456" cy="470" r="1.3" opacity="0.6"/>
+    <circle cx="120" cy="470" r="1" opacity="0.4"/>
+    <circle cx="256" cy="24" r="0.9" opacity="0.4"/>
+    <circle cx="340" cy="300" r="0.8" opacity="0.35"/>
+    <circle cx="190" cy="310" r="0.8" opacity="0.35"/>
+    <circle cx="396" cy="250" r="1.7" opacity="0.75"/>
+    <circle cx="86" cy="196" r="1.5" opacity="0.7"/>
+  </g>
+  <!-- gold halo behind the mark -->
+  <circle cx="256" cy="170" r="230" fill="url(#crn-t-halo)"/>
+  <!-- vignette -->
+  <rect width="512" height="512" fill="url(#crn-t-vignette)"/>
+  <!-- frame -->
+  <rect x="14" y="14" width="484" height="484" fill="none" stroke="#D6AC40" stroke-opacity="0.4" stroke-width="1.5"/>
+  <rect x="19" y="19" width="474" height="474" fill="none" stroke="#F3E3B0" stroke-opacity="0.08" stroke-width="1"/>
+  <!-- mark, 250 px, centred horizontally -->
+  <g transform="translate(131 44) scale(1.25)">
+    {{MARK}}
+  </g>
+  <g filter="url(#crn-t-text)">
+    <text x="256" y="376" text-anchor="middle" font-family="Cinzel, 'Palatino Linotype', Georgia, serif" font-size="56" letter-spacing="7" fill="#D6AC40">CORONET</text>
+  </g>
+  <line x1="196" y1="396" x2="316" y2="396" stroke="#D6AC40" stroke-opacity="0.55" stroke-width="1"/>
+  <text x="256" y="432" text-anchor="middle" font-family="Bahnschrift, 'Segoe UI', sans-serif" font-size="27" letter-spacing="8" fill="#5CC8DC">{{SUBTITLE}}</text>
+  <!-- game version badge, updated each patch by re-rendering -->
+  <g transform="translate(408 30)">
+    <rect width="74" height="30" rx="6" fill="#0E1224" fill-opacity="0.8" stroke="#D6AC40" stroke-opacity="0.7" stroke-width="1.5"/>
+    <text x="37" y="21" text-anchor="middle" font-family="Bahnschrift, 'Segoe UI', sans-serif" font-size="16" letter-spacing="1" fill="#F3E3B0">{{VERSION}}</text>
+  </g>
+</svg>

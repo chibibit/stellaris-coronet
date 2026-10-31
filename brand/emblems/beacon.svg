@@ -1,0 +1,4 @@
+<!-- beacon: a signal radiating outward. For mods about events, diplomacy, contact, UI. -->
+<circle cx="100" cy="100" r="7" fill="#F3E3B0"/>
+<circle cx="100" cy="100" r="19" fill="none" stroke="#F3E3B0" stroke-width="2.4" opacity="0.85"/>
+<circle cx="100" cy="100" r="31" fill="none" stroke="#F3E3B0" stroke-width="2" opacity="0.5"/>

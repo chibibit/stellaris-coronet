@@ -1,0 +1,70 @@
+name: ci
+
+# Runs on every push to master, every pull request, and by hand (Actions tab -> Run workflow, or `gh workflow
+# run ci`). Three jobs, all under a minute: the repository's own lint and localisation check, a pass over the
+# scripts (executable bit, LF endings, syntax, shellcheck), and a gate that rejects commits carrying
+# attribution trailers.
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: lint and localisation
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - name: Lint the mod folders
+        run: scripts/check.sh
+      - name: Generated localisation files are current
+        run: scripts/loc-sync.sh --check
+
+  scripts:
+    name: shell scripts
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - name: Executable bit and LF endings
+        run: |
+          status=0
+          for f in scripts/*.sh .claude/scripts/*.sh; do
+            [[ -x "$f" ]] || { echo "not executable: $f"; status=1; }
+            if grep -q $'\r' "$f"; then echo "CRLF line endings: $f"; status=1; fi
+          done
+          exit $status
+      - name: Syntax
+        run: for f in scripts/*.sh .claude/scripts/*.sh; do bash -n "$f" || exit 1; done
+      - name: shellcheck
+        run: shellcheck -x -S warning scripts/*.sh .claude/scripts/*.sh
+
+  commits:
+    name: no attribution trailers
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Every commit in this push or pull request
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          # a first push or a manual run has no usable base; check the head commit alone
+          if [[ -z "$BASE" || "$BASE" =~ ^0+$ ]] || ! git cat-file -e "$BASE" 2>/dev/null; then
+            range="$HEAD -1"
+          else
+            range="$BASE..$HEAD"
+          fi
+          echo "checking: $range"
+          bad="$(git log --format='%H%n%B%n----' $range | grep -n -iE '^co-authored-by:|generated with' || true)"
+          if [[ -n "$bad" ]]; then
+            echo "attribution trailers are not allowed in commit messages (CLAUDE.md, Branches):"
+            echo "$bad"
+            exit 1
+          fi
+          echo "no trailers in $(git rev-list --count $range) commit(s)"

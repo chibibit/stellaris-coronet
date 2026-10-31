@@ -1,0 +1,15 @@
+namespace = crn_core
+
+# Fired once from on_game_start (common/on_actions/crn_core_on_actions.txt).
+# Other Coronet mods and compatibility patches test has_global_flag = crn_core_active;
+# the log line in game.log is the proof the mod loaded.
+event = {
+	id = crn_core.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = crn_core_active
+		log = "Coronet: Core loaded"
+	}
+}

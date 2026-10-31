@@ -1,0 +1,5 @@
+# LF everywhere; the game reads both, git should see one.
+* text=auto eol=lf
+*.sh text eol=lf
+*.png binary
+*.dds binary

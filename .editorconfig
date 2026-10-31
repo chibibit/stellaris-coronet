@@ -1,0 +1,28 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Paradox script: vanilla files use tabs.
+[*.{txt,mod,gui,gfx,asset}]
+indent_style = tab
+
+# Localisation: one space per level, UTF-8 with BOM (the game rejects plain UTF-8).
+[*.yml]
+charset = utf-8-bom
+indent_style = space
+indent_size = 1
+
+[*.{md,json,yaml}]
+indent_style = space
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.sh]
+indent_style = space
+indent_size = 2
